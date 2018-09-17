@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 
+import { AddItemPage } from '../add-item/add-item';
 import { ToDoItem } from '../../interfaces/todo-item';
 
 @Component({
@@ -11,7 +12,10 @@ export class HomePage {
 
 	public items: ToDoItem[];
 
-	constructor(public navCtrl: NavController) {
+	constructor(
+		public navCtrl: NavController,
+		public modalCtrl: ModalController
+	) {
 
 	}
 
@@ -24,7 +28,19 @@ export class HomePage {
 		]
 	}
 
-	addItem() {}
+	addItem() {
+		let addModal = this.modalCtrl.create(AddItemPage);
+		addModal.onDidDismiss((item) => {
+			if (item) {
+				this.saveItem(item);
+			}
+		})
+		addModal.present();
+	}
+
+	saveItem(item) {
+		this.items.push(item);
+	}
 
 	viewItem() {}
 

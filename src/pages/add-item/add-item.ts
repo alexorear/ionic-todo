@@ -18,14 +18,15 @@ export class AddItemPage {
 	}
 
 	saveItem() {
-		let newItem: ToDoItem = {
+		const newItem: ToDoItem = {
 			title: this.title,
 			description: this.description
 		}
+		this.view.dismiss(newItem);
 	}
 
 	close() {
-		this.view.dismiss;
+		this.view.dismiss();
 	}
 
 }
