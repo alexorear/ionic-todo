@@ -9,10 +9,10 @@ export class DataService{
 	}
 
 	getToDoItems() {
-		this.storage.get('todos');
+		return this.storage.get('todos');
 	}
 
 	save(data) {
-		this.storage.set('todos', data);
+		return this.storage.set('todos', data);
 	}
 }

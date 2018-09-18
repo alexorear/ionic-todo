@@ -4,6 +4,7 @@ import { ModalController, NavController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item';
 import { ItemDetailPage } from '../item-detail/item-detail';
 import { ToDoItem } from '../../interfaces/todo-item';
+import { DataService } from '../../providers/data/data';
 
 @Component({
 	selector: 'page-home',
@@ -11,22 +12,22 @@ import { ToDoItem } from '../../interfaces/todo-item';
 })
 export class HomePage {
 
-	public items: ToDoItem[];
+	public items: ToDoItem[] = [];
 
 	constructor(
+		private data: DataService,
 		public navCtrl: NavController,
-		public modalCtrl: ModalController
+		public modalCtrl: ModalController,
 	) {
 
 	}
 
 	ngOnInit() {
-		this.items = [
-			{title: 'test1', description: 'First test item'},
-			{title: 'test2', description: 'Second test item'},
-			{title: 'test3', description: 'Third test item'},
-			{title: 'test4', description: 'Fourth test item'}
-		]
+		this.data.getToDoItems().then((todos) => {
+			if (todos) {
+				this.items = todos;
+			}
+		});
 	}
 
 	addItem() {
@@ -41,6 +42,7 @@ export class HomePage {
 
 	saveItem(item) {
 		this.items.push(item);
+		this.data.save(this.items);
 	}
 
 	viewItem(item) {
