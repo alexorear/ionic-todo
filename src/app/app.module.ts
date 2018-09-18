@@ -5,18 +5,25 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicStorageModule } from '@ionic/storage';
 
-import { MyApp } from './app.component';
 import { AddItemPage } from '../pages/add-item/add-item';
+import { CompletedPage } from '../pages/completed/completed';
 import { HomePage } from '../pages/home/home';
 import { ItemDetailPage } from '../pages/item-detail/item-detail';
+import { MyApp } from './app.component';
+import { ProfilePage } from '../pages/profile/profile';
+import { TabsPage } from '../pages/tabs/tabs';
+
 import { DataService } from '../providers/data/data';
 
 @NgModule({
 	declarations: [
 		AddItemPage,
+		CompletedPage,
 		HomePage,
 		ItemDetailPage,
-		MyApp
+		MyApp,
+		ProfilePage,
+		TabsPage,
 	],
 	imports: [
 		BrowserModule,
@@ -28,9 +35,12 @@ import { DataService } from '../providers/data/data';
 	bootstrap: [IonicApp],
 	entryComponents: [
 		AddItemPage,
+		CompletedPage,
 		HomePage,
 		ItemDetailPage,
-		MyApp
+		MyApp,
+		ProfilePage,
+		TabsPage
 	],
 	providers: [
 		StatusBar,

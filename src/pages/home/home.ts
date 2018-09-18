@@ -4,6 +4,7 @@ import { ModalController, NavController } from 'ionic-angular';
 import { AddItemPage } from '../add-item/add-item';
 import { ItemDetailPage } from '../item-detail/item-detail';
 import { ToDoItem } from '../../interfaces/todo-item';
+
 import { DataService } from '../../providers/data/data';
 
 @Component({
