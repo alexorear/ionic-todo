@@ -24,9 +24,10 @@ export class HomePage {
 	}
 
 	ngOnInit() {
-		this.data.getToDoItems().then((todos) => {
-			if (todos) {
-				this.items = todos;
+		this.data.getAllToDoItems().then(() => {
+			if (this.data.activeItems) {
+				this.items = this.data.activeItems;
+				console.log(this.items);
 			}
 		});
 	}
@@ -43,7 +44,7 @@ export class HomePage {
 
 	saveItem(item) {
 		this.items.push(item);
-		this.data.save(this.items);
+		this.data.saveToDoItem(item);
 	}
 
 	viewItem(item) {
