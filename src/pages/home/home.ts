@@ -24,7 +24,7 @@ export class HomePage {
 	}
 
 	ngOnInit() {
-		this.data.getAllToDoItems().then(() => {
+		this.data.getAllActiveToDoItems().then(() => {
 			if (this.data.activeItems) {
 				this.items = this.data.activeItems;
 				console.log(this.items);

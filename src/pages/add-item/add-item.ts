@@ -20,7 +20,8 @@ export class AddItemPage {
 	saveItem() {
 		const newItem: ToDoItem = {
 			title: this.title,
-			description: this.description
+			description: this.description,
+			status: 'active'
 		}
 		this.view.dismiss(newItem);
 	}
