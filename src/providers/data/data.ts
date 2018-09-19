@@ -9,13 +9,20 @@ export class DataService{
 	completedItems: ToDoItem[] = [];
 
 	constructor(private storage: Storage) {
-		this.getAllToDoItems();
+
 	}
 
-	getAllToDoItems() {
-		return this.storage.forEach((value, key) => {
+	getAllActiveToDoItems() {
+		return this.storage.forEach((value, key, index) => {
+			if (key.split('_')[0] === 'todo' && value.status === 'active') {
+				this.activeItems.push(value);
+			}
+		});
+	}
+
+	getAllCompletedToDoItems() {
+		return this.storage.forEach((value, key, index) => {
 			if (key.split('_')[0] === 'todo') {
-				debugger;
 				this.activeItems.push(value);
 			}
 		});
