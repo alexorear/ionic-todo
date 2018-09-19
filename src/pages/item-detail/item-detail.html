@@ -7,5 +7,10 @@
 <ion-content>
 	<ion-card>
 		<ion-card-content>{{ description }}</ion-card-content>
+		<ion-item>
+			<ion-label>Task Complete</ion-label>
+			<ion-checkbox [(ngModel)]="completeStatus" color="secondary"></ion-checkbox>
+		</ion-item>
 	</ion-card>
+	<button ion-button (click)="saveItem()">Save Item</button>
 </ion-content>
