@@ -10,12 +10,14 @@ export class ItemDetailPage {
 	public description: string;
 	public title: string;
 	public completeStatus: boolean = false;
+	private id: string;
 	private status: Status;
 
 	constructor(public events: Events, public navParams: NavParams) {
 	}
 
 	ionViewDidLoad() {
+		this.id = this.navParams.get('item').id;
 		this.description = this.navParams.get('item').description;
 		this.title = this.navParams.get('item').title;
 		this.status = this.navParams.get('item').status;
@@ -31,6 +33,7 @@ export class ItemDetailPage {
 			this.status = 'complete'
 		}
 		const updatedItem: ToDoItem = {
+			id: this.id,
 			title: this.title,
 			description: this.description,
 			status: this.status

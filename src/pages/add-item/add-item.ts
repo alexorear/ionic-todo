@@ -19,6 +19,7 @@ export class AddItemPage {
 
 	saveItem() {
 		const newItem: ToDoItem = {
+			id: Date.now().toString(),
 			title: this.title,
 			description: this.description,
 			status: 'active'

@@ -29,7 +29,6 @@ export class DataService{
 	}
 
 	saveToDoItem(data) {
-		const id = Date.now();
-		return this.storage.set(`todo_${id}`, data);
+		return this.storage.set(`todo_${data.id}`, data);
 	}
 }
