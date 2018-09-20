@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, NavController, NavParams } from 'ionic-angular';
+import { AlertController, Events, NavController, NavParams } from 'ionic-angular';
 
 import { DataService } from '../../providers/data/data';
 import { ToDoItem, Status } from '../../interfaces/todo-item';
@@ -18,6 +18,7 @@ export class ItemDetailPage {
 	constructor(
 		private alertCrtl: AlertController,
 		private data: DataService,
+		public events: Events,
 		public navCtrl: NavController,
 		public navParams: NavParams
 	) {
@@ -57,6 +58,7 @@ export class ItemDetailPage {
 
 	itemDelete() {
 		this.data.deleteToDoItem(this.id).then(() => {
+			this.events.publish('reload:activeItems');
 			this.navCtrl.pop();
 		});
 	}
@@ -72,6 +74,7 @@ export class ItemDetailPage {
 			status: this.status
 		}
 		this.data.saveToDoItem(updatedItem).then(() => {
+			this.events.publish('reload:activeItems');
 			this.navCtrl.pop();
 		})
 	}
