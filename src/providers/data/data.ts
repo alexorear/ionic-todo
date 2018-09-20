@@ -22,8 +22,8 @@ export class DataService{
 
 	getAllCompletedToDoItems() {
 		return this.storage.forEach((value, key, index) => {
-			if (key.split('_')[0] === 'todo') {
-				this.activeItems.push(value);
+			if (key.split('_')[0] === 'todo' && value.status === 'complete') {
+				this.completedItems.push(value);
 			}
 		});
 	}

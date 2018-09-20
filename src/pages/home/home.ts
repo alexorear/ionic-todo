@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Events, ModalController, NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 
 import { AddItemPage } from '../add-item/add-item';
 import { ItemDetailPage } from '../item-detail/item-detail';
@@ -17,14 +17,9 @@ export class HomePage {
 
 	constructor(
 		private data: DataService,
-		public events: Events,
 		public navCtrl: NavController,
 		public modalCtrl: ModalController,
-	) {
-		this.events.subscribe('updateItem', (item) => {
-			this.saveItem(item);
-		});
-	}
+	) { }
 
 	ngOnInit() {
 		this.data.getAllActiveToDoItems().then(() => {

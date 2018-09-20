@@ -4,7 +4,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 	<ion-card>
 		<ion-card-content>{{ description }}</ion-card-content>
 		<ion-item>
@@ -12,5 +12,7 @@
 			<ion-checkbox [(ngModel)]="completeStatus" color="secondary"></ion-checkbox>
 		</ion-item>
 	</ion-card>
-	<button ion-button (click)="saveItem()">Save Item</button>
+	<ion-buttons>
+		<button ion-button (click)="saveItem()">Save Item</button>
+	</ion-buttons>
 </ion-content>
