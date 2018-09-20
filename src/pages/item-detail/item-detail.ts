@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { Events, NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams } from 'ionic-angular';
 
+import { DataService } from '../../providers/data/data';
 import { ToDoItem, Status } from '../../interfaces/todo-item';
+
 @Component({
 	selector: 'page-item-detail',
 	templateUrl: 'item-detail.html',
@@ -13,7 +15,12 @@ export class ItemDetailPage {
 	private id: string;
 	private status: Status;
 
-	constructor(public events: Events, public navParams: NavParams) {
+	constructor(
+		private alertCrtl: AlertController,
+		private data: DataService,
+		public navCtrl: NavController,
+		public navParams: NavParams
+	) {
 	}
 
 	ionViewDidLoad() {
@@ -28,6 +35,32 @@ export class ItemDetailPage {
 		}
 	}
 
+	confirmItemDelete() {
+		let alert = this.alertCrtl.create({
+			title: 'Confirm Deletetion',
+			subTitle: 'This will perminately remove this item from your todo list.',
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'canel',
+				},
+				{
+					text: 'Confirm',
+					handler: () => {
+						this.itemDelete();
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
+	itemDelete() {
+		this.data.deleteToDoItem(this.id).then(() => {
+			this.navCtrl.pop();
+		});
+	}
+
 	saveItem() {
 		if (this.completeStatus) {
 			this.status = 'complete'
@@ -38,6 +71,8 @@ export class ItemDetailPage {
 			description: this.description,
 			status: this.status
 		}
-		this.events.publish('updateItem', (updatedItem));
+		this.data.saveToDoItem(updatedItem).then(() => {
+			this.navCtrl.pop();
+		})
 	}
 }
